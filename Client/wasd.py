@@ -49,6 +49,7 @@ def on_release(key):
     except AttributeError:
         pass
 
-# Listener per intercettare gli eventi della tastiera
-with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
-    listener.join()
+def start_listener():
+    # Listener per intercettare gli eventi della tastiera
+    with keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
+        listener.join()
