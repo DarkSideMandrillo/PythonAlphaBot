@@ -1,8 +1,10 @@
 import socket
 import threading
-#import AlphaBot
 
-#istanza = AlphaBot()
+# import AlphaBot
+
+# istanza = AlphaBot.alphabot()
+
 
 def heartbeat_recive(recive_heartbeat):
     socket_heartbeat.settimeout(6.5)
@@ -19,7 +21,7 @@ def heartbeat_recive(recive_heartbeat):
 
     socket_heartbeat.close()  # Chiudi il socket dopo l'uscita dal ciclo
     socket_command.close()
-    # Alphabot.stop()
+    # istanza.stop()
 
 
 # Crea un socket TCP
@@ -41,13 +43,41 @@ print("Connessione Command")
 recive_heartbeat, address2 = socket_heartbeat.accept()  # Bloccante
 print("Connessione Heartbeat")
 
-thread_heartbeat = threading.Thread(target=heartbeat_recive,args=(recive_heartbeat,))
+thread_heartbeat = threading.Thread(target=heartbeat_recive, args=(recive_heartbeat,))
 thread_heartbeat.start()
 
-while (True):
-  # Riceve dal client
-  data = recive_command.recv(4096)  # Bloccante
-  print(f"Messaggio ricevuto: {data.decode()}")
+while True:
+    # Riceve dal client
+    data = recive_command.recv(4096)  # Bloccante
 
+    match data.decode():
+        case "Avanti":
+            # Alphabot.forward()
+            print("Avanti")
+        case "Stop Avanti":
+            # Alphabot.forward()
+            print("Fermo avanti")
+        case "Indietro":
+            # Alphabot.forward()
+            print("Indietro")
+        case "Stop Indietro":
+            # Alphabot.forward()
+            print("Fermo indietro")
+        case "Sinistra":
+            # Alphabot.forward()
+            print("Sinistra")
+        case "Stop Sinistra":
+            # Alphabot.forward()
+            print("Fermo Sinistra")
+        case "Destra":
+            # Alphabot.forward()
+            print("Destra")
+        case "Stop Destra":
+            # Alphabot.forward()
+            print("Fermo Destra")
+        case "esc":
+            break
 
-conn.close()
+socket_heartbeat.close()  # Chiudi il socket dopo l'uscita dal ciclo
+socket_command.close()
+# Alphabot.stop()
